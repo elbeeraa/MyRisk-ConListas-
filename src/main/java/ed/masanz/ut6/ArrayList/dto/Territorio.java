@@ -8,7 +8,7 @@ public class Territorio {
     private String nombre;
     private Jugador propietario;
     private int ejercitos;
-    private List<Territorio> vecinos;
+    private List<String> vecinos;
 
     public Territorio(String nombre) {
         this.nombre = nombre;
@@ -17,7 +17,7 @@ public class Territorio {
         this.vecinos = new ArrayList<>();
     }
 
-    public void meterVecino(Territorio vecino){
+    public void meterVecino(String vecino){
         this.vecinos.add(vecino);
     }
 
@@ -45,31 +45,19 @@ public class Territorio {
         this.ejercitos = ejercitos;
     }
 
-    public List<Territorio> getVecinos() {
+    public List<String> getVecinos() {
         return vecinos;
     }
 
-    public void setVecinos(List<Territorio> vecinos) {
-        this.vecinos = vecinos;
-    }
-
-    public List<String> getNombreVecinos(){
-        List<String> nombres = new ArrayList<>();
-        for (Territorio vecino : vecinos) {
-            nombres.add(vecino.getNombre());
-        }
-        return nombres;
-    }
 
     @Override
     public String toString() {
-        return nombre + " (" + propietario.getNombre() + " )" + " , "+ ejercitos;
+        if(propietario != null){
+            return nombre + " (" + propietario.getNombre() + " )" + " , "+ ejercitos;
+        } else {
+            return nombre + " sin propietario.";
+        }
     }
 
-    public static void main(String[] args) {
-        Territorio t1 = new Territorio("España");
-        Jugador j1 = new Jugador("A","Elvira");
-        t1.setPropietario(j1);
-        Territorio t2 = new Territorio("Francia");
-    }
+
 }
